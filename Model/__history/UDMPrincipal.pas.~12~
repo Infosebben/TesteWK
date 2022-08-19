@@ -1,0 +1,84 @@
+unit UDMPrincipal;
+
+interface
+
+uses
+  SysUtils, Classes, FMTBcd, WideStrings, DBXMySql, DB, SqlExpr, DBClient, Provider;
+
+type
+  TDMPrincipal = class(TDataModule)
+    Conexao: TSQLConnection;
+    TblCliente: TSQLDataSet;
+    TblClientecodigo: TIntegerField;
+    TblClientenome: TStringField;
+    TblClientecidade: TStringField;
+    TblClienteUF: TStringField;
+    DspCliente: TDataSetProvider;
+    CdsCliente: TClientDataSet;
+    CdsClientecodigo: TIntegerField;
+    CdsClientenome: TStringField;
+    CdsClientecidade: TStringField;
+    CdsClienteUF: TStringField;
+    DSCliente: TDataSource;
+    TblProduto: TSQLDataSet;
+    DSPProduto: TDataSetProvider;
+    CdsProduto: TClientDataSet;
+    DSProduto: TDataSource;
+    TblPedido: TSQLDataSet;
+    DSPPedido: TDataSetProvider;
+    CDSPedido: TClientDataSet;
+    DSPedido: TDataSource;
+    TblPedidoProdutos: TSQLDataSet;
+    DSPPedidoProduto: TDataSetProvider;
+    CDSPedidoProduto: TClientDataSet;
+    DSPedidoProduto: TDataSource;
+    TblProdutocodigo: TIntegerField;
+    TblProdutoDescricao: TStringField;
+    TblProdutopreco: TSingleField;
+    TblPedidonumero_pedido: TIntegerField;
+    TblPedidodata_emissao: TSQLTimeStampField;
+    TblPedidocodigo_cliente: TIntegerField;
+    TblPedidovalor_total: TSingleField;
+    TblPedidoCliente: TStringField;
+    TblPedidoProdutosautoincrem: TIntegerField;
+    TblPedidoProdutosnumero_pedido: TIntegerField;
+    TblPedidoProdutoscodigo_produto: TIntegerField;
+    TblPedidoProdutosquantidade: TIntegerField;
+    TblPedidoProdutosvalor_unit: TSingleField;
+    TblPedidoProdutosvalor_total: TSingleField;
+    TblPedidoProdutosProduto: TStringField;
+    CdsProdutocodigo: TIntegerField;
+    CdsProdutoDescricao: TStringField;
+    CdsProdutopreco: TSingleField;
+    QryNumeroPedido: TSQLQuery;
+    QryNumeroPedidoProximo: TLargeintField;
+    CDSPedidonumero_pedido: TIntegerField;
+    CDSPedidodata_emissao: TSQLTimeStampField;
+    CDSPedidocodigo_cliente: TIntegerField;
+    CDSPedidovalor_total: TSingleField;
+    CDSPedidoCliente: TStringField;
+    qryRetornaProduto: TSQLQuery;
+    qryRetornaProdutocodigo: TIntegerField;
+    qryRetornaProdutoDescricao: TStringField;
+    qryRetornaProdutopreco: TSingleField;
+    CDSPedidoProdutoautoincrem: TIntegerField;
+    CDSPedidoProdutonumero_pedido: TIntegerField;
+    CDSPedidoProdutocodigo_produto: TIntegerField;
+    CDSPedidoProdutoquantidade: TIntegerField;
+    CDSPedidoProdutovalor_unit: TSingleField;
+    CDSPedidoProdutovalor_total: TSingleField;
+    CDSPedidoProdutoProduto: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMPrincipal: TDMPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+end.

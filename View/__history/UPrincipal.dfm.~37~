@@ -1,0 +1,485 @@
+object FormPrincipal: TFormPrincipal
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  ClientHeight = 545
+  ClientWidth = 780
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PnlTitulo: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 774
+    Height = 41
+    Align = alTop
+    Alignment = taLeftJustify
+    BevelOuter = bvNone
+    Caption = '   Pedido de vendas - WK Technology'
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    object BitBtn1: TBitBtn
+      AlignWithMargins = True
+      Left = 676
+      Top = 3
+      Width = 95
+      Height = 35
+      Align = alRight
+      Caption = 'Sair'
+      DoubleBuffered = True
+      ParentDoubleBuffered = False
+      TabOrder = 0
+      OnClick = BitBtn1Click
+      ExplicitLeft = 675
+      ExplicitTop = 6
+    end
+  end
+  object Panel2: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 50
+    Width = 774
+    Height = 492
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitHeight = 451
+    object PageControlPedido: TPageControl
+      Left = 0
+      Top = -22
+      Width = 774
+      Height = 511
+      ActivePage = TbsConsulta
+      Style = tsButtons
+      TabOrder = 0
+      object TbsConsulta: TTabSheet
+        Caption = 'Pedidos'
+        ExplicitLeft = 5
+        ExplicitTop = 22
+        ExplicitHeight = 461
+        object EdtConsulta: TEdit
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 760
+          Height = 38
+          Align = alTop
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -21
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          NumbersOnly = True
+          ParentFont = False
+          TabOrder = 0
+          TextHint = 'Buscar por numero do pedido'
+          OnChange = EdtConsultaChange
+        end
+        object DBGrdConsultaPedido: TDBGrid
+          AlignWithMargins = True
+          Left = 3
+          Top = 47
+          Width = 760
+          Height = 390
+          Align = alTop
+          DataSource = DMPrincipal.DSPedido
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+          OnDblClick = DBGrdConsultaPedidoDblClick
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'numero_pedido'
+              Title.Caption = 'Pedido'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'data_emissao'
+              Title.Caption = 'Data de Emiss'#227'o'
+              Width = 88
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Cliente'
+              Width = 224
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'valor_total'
+              Title.Caption = 'Valor Total'
+              Visible = True
+            end>
+        end
+        object BtnIncluirPedido: TBitBtn
+          Left = 640
+          Top = 443
+          Width = 123
+          Height = 29
+          Caption = 'Incluir pedido'
+          DoubleBuffered = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentDoubleBuffered = False
+          ParentFont = False
+          TabOrder = 2
+          OnClick = BtnIncluirPedidoClick
+        end
+      end
+      object TbsCadastro: TTabSheet
+        Caption = 'Cadastro de Pedido'
+        ImageIndex = 1
+        ExplicitHeight = 456
+        object Panel1: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 760
+          Height = 22
+          Align = alTop
+          BevelOuter = bvNone
+          Caption = 'INCLUS'#195'O DE PEDIDO'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+        end
+        object PnlProdutosPedido: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 111
+          Width = 760
+          Height = 366
+          Align = alTop
+          BevelOuter = bvNone
+          ParentBackground = False
+          TabOrder = 1
+          Visible = False
+          object lblcodigo_produto: TLabel
+            Left = 4
+            Top = 27
+            Width = 41
+            Height = 13
+            Caption = 'C'#243'digo:'
+          end
+          object Label1: TLabel
+            Left = 312
+            Top = 27
+            Width = 64
+            Height = 13
+            Caption = 'Quantidade:'
+          end
+          object DBText1: TDBText
+            Left = 74
+            Top = 46
+            Width = 227
+            Height = 17
+            DataField = 'Produto'
+            DataSource = DMPrincipal.DSPedidoProduto
+          end
+          object Label2: TLabel
+            Left = 382
+            Top = 27
+            Width = 74
+            Height = 13
+            Caption = 'Valor Unit'#225'rio:'
+          end
+          object Label6: TLabel
+            Left = 280
+            Top = 331
+            Width = 96
+            Height = 17
+            Caption = 'Total do Pedido:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            ParentFont = False
+          end
+          object LblTotalPedido: TLabel
+            Left = 382
+            Top = 331
+            Width = 102
+            Height = 17
+            Caption = 'Total do Pedido:'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Panel4: TPanel
+            Left = 0
+            Top = 0
+            Width = 760
+            Height = 21
+            Align = alTop
+            Alignment = taLeftJustify
+            BevelOuter = bvNone
+            Caption = 'Adicionar produto ao pedido:'
+            Color = clBlack
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 0
+            ExplicitLeft = 4
+            ExplicitWidth = 334
+          end
+          object DBEdtCodigoProduto: TDBEdit
+            Left = 4
+            Top = 43
+            Width = 64
+            Height = 21
+            DataField = 'codigo_produto'
+            DataSource = DMPrincipal.DSPedidoProduto
+            TabOrder = 1
+            OnKeyPress = DBEdtCodigoProdutoKeyPress
+          end
+          object DBEdtQuantidade: TDBEdit
+            Left = 312
+            Top = 43
+            Width = 64
+            Height = 21
+            DataField = 'quantidade'
+            DataSource = DMPrincipal.DSPedidoProduto
+            TabOrder = 2
+            OnKeyPress = DBEdtQuantidadeKeyPress
+          end
+          object DBEdtValorUnitario: TDBEdit
+            Left = 382
+            Top = 43
+            Width = 74
+            Height = 21
+            DataField = 'valor_unit'
+            DataSource = DMPrincipal.DSPedidoProduto
+            TabOrder = 3
+          end
+          object BtnAdicionarProduto: TBitBtn
+            AlignWithMargins = True
+            Left = 462
+            Top = 43
+            Width = 67
+            Height = 21
+            Caption = 'Adicionar'
+            DoubleBuffered = True
+            ParentDoubleBuffered = False
+            TabOrder = 4
+            OnClick = BtnAdicionarProdutoClick
+          end
+          object DBGrdProdutos: TDBGrid
+            AlignWithMargins = True
+            Left = 5
+            Top = 66
+            Width = 749
+            Height = 249
+            Margins.Left = 5
+            Margins.Top = 5
+            Margins.Right = 5
+            Margins.Bottom = 5
+            DataSource = DMPrincipal.DSPedidoProduto
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            TabOrder = 5
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+            OnKeyDown = DBGrdProdutosKeyDown
+            OnKeyPress = DBGrdProdutosKeyPress
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'codigo_produto'
+                Title.Caption = 'Codigo'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Produto'
+                Width = 150
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'quantidade'
+                Title.Caption = 'Quantidade'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'valor_unit'
+                Title.Caption = 'Valor Unit'#225'rio'
+                Width = 78
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'valor_total'
+                Title.Caption = 'Valor Total'
+                Visible = True
+              end>
+          end
+          object BtnSalvarPedido: TBitBtn
+            AlignWithMargins = True
+            Left = 619
+            Top = 322
+            Width = 133
+            Height = 36
+            Caption = 'Salvar Pedido'
+            DoubleBuffered = True
+            ParentDoubleBuffered = False
+            TabOrder = 6
+            OnClick = BtnSalvarPedidoClick
+          end
+        end
+        object PnlDadosPedido: TPanel
+          AlignWithMargins = True
+          Left = 3
+          Top = 31
+          Width = 760
+          Height = 74
+          Align = alTop
+          BevelOuter = bvNone
+          ParentBackground = False
+          TabOrder = 2
+          object Label3: TLabel
+            Left = 4
+            Top = 27
+            Width = 100
+            Height = 13
+            Caption = 'N'#250'mero do Pedido:'
+          end
+          object DBText2: TDBText
+            Left = 5
+            Top = 46
+            Width = 99
+            Height = 17
+            DataField = 'numero_pedido'
+            DataSource = DMPrincipal.DSPedido
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label4: TLabel
+            Left = 215
+            Top = 27
+            Width = 39
+            Height = 13
+            Caption = 'Cliente:'
+          end
+          object Label5: TLabel
+            Left = 110
+            Top = 27
+            Width = 83
+            Height = 13
+            Caption = 'Data do Pedido:'
+          end
+          object DBText3: TDBText
+            Left = 110
+            Top = 46
+            Width = 99
+            Height = 17
+            DataField = 'data_emissao'
+            DataSource = DMPrincipal.DSPedido
+          end
+          object Panel6: TPanel
+            Left = 0
+            Top = 0
+            Width = 760
+            Height = 21
+            Align = alTop
+            Alignment = taLeftJustify
+            BevelOuter = bvNone
+            Caption = 'Dados do Pedido:'
+            Color = clBlack
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 0
+          end
+          object DBLkpCBxCliente: TDBLookupComboBox
+            Left = 215
+            Top = 43
+            Width = 249
+            Height = 21
+            DataField = 'codigo_cliente'
+            DataSource = DMPrincipal.DSPedido
+            KeyField = 'codigo'
+            ListField = 'nome'
+            ListSource = DMPrincipal.DSCliente
+            TabOrder = 1
+          end
+          object BtnAdicionaPedido: TBitBtn
+            AlignWithMargins = True
+            Left = 470
+            Top = 42
+            Width = 133
+            Height = 23
+            Caption = 'Adicionar Produto'
+            DoubleBuffered = True
+            ParentDoubleBuffered = False
+            TabOrder = 2
+            OnClick = BtnAdicionaPedidoClick
+          end
+        end
+        object BtnVoltar: TBitBtn
+          AlignWithMargins = True
+          Left = 483
+          Top = 434
+          Width = 133
+          Height = 36
+          Caption = 'Voltar'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
+          TabOrder = 3
+          Visible = False
+          OnClick = BtnVoltarClick
+        end
+      end
+    end
+  end
+end

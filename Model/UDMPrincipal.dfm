@@ -1,0 +1,362 @@
+object DMPrincipal: TDMPrincipal
+  OldCreateOrder = False
+  Height = 359
+  Width = 633
+  object Conexao: TSQLConnection
+    ConnectionName = 'MSSQLConnection'
+    DriverName = 'MySQL'
+    GetDriverFunc = 'getSQLDriverMYSQL'
+    LibraryName = 'dbxmys.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'Database=WK'
+      'HostName=localhost'
+      'Password=1904'
+      'User_Name=root')
+    VendorLib = 'libmysql.dll'
+    Connected = True
+    Left = 36
+    Top = 8
+  end
+  object TblCliente: TSQLDataSet
+    SchemaName = 'root'
+    CommandText = 'select * from `cliente`'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao
+    Left = 36
+    Top = 56
+    object TblClientecodigo: TIntegerField
+      FieldName = 'codigo'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object TblClientenome: TStringField
+      FieldName = 'nome'
+      ProviderFlags = [pfInUpdate]
+      Required = True
+      Size = 150
+    end
+    object TblClientecidade: TStringField
+      FieldName = 'cidade'
+      ProviderFlags = [pfInUpdate]
+      Size = 150
+    end
+    object TblClienteUF: TStringField
+      FieldName = 'UF'
+      ProviderFlags = [pfInUpdate]
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object DspCliente: TDataSetProvider
+    DataSet = TblCliente
+    UpdateMode = upWhereKeyOnly
+    Left = 140
+    Top = 56
+  end
+  object CdsCliente: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspCliente'
+    Left = 240
+    Top = 56
+    object CdsClientecodigo: TIntegerField
+      FieldName = 'codigo'
+      Required = True
+    end
+    object CdsClientenome: TStringField
+      FieldName = 'nome'
+      Required = True
+      Size = 150
+    end
+    object CdsClientecidade: TStringField
+      FieldName = 'cidade'
+      Size = 150
+    end
+    object CdsClienteUF: TStringField
+      FieldName = 'UF'
+      FixedChar = True
+      Size = 2
+    end
+  end
+  object DSCliente: TDataSource
+    DataSet = CdsCliente
+    Left = 336
+    Top = 56
+  end
+  object TblProduto: TSQLDataSet
+    SchemaName = 'root'
+    CommandText = 'select * from `produto`'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao
+    Left = 36
+    Top = 100
+    object TblProdutocodigo: TIntegerField
+      FieldName = 'codigo'
+      Required = True
+    end
+    object TblProdutoDescricao: TStringField
+      FieldName = 'Descricao'
+      Required = True
+      Size = 150
+    end
+    object TblProdutopreco: TSingleField
+      FieldName = 'preco'
+      Required = True
+    end
+  end
+  object DSPProduto: TDataSetProvider
+    DataSet = TblProduto
+    Left = 140
+    Top = 100
+  end
+  object CdsProduto: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DSPProduto'
+    Left = 240
+    Top = 100
+    object CdsProdutocodigo: TIntegerField
+      FieldName = 'codigo'
+      Required = True
+    end
+    object CdsProdutoDescricao: TStringField
+      FieldName = 'Descricao'
+      Required = True
+      Size = 150
+    end
+    object CdsProdutopreco: TSingleField
+      FieldName = 'preco'
+      Required = True
+      currency = True
+    end
+  end
+  object DSProduto: TDataSource
+    DataSet = CdsProduto
+    Left = 336
+    Top = 100
+  end
+  object TblPedido: TSQLDataSet
+    SchemaName = 'root'
+    CommandText = 'select * from `pedido`'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao
+    Left = 36
+    Top = 148
+    object TblPedidonumero_pedido: TIntegerField
+      FieldName = 'numero_pedido'
+      Required = True
+    end
+    object TblPedidodata_emissao: TSQLTimeStampField
+      FieldName = 'data_emissao'
+      Required = True
+    end
+    object TblPedidocodigo_cliente: TIntegerField
+      FieldName = 'codigo_cliente'
+      Required = True
+    end
+    object TblPedidovalor_total: TSingleField
+      FieldName = 'valor_total'
+    end
+  end
+  object DSPPedido: TDataSetProvider
+    DataSet = TblPedido
+    Left = 140
+    Top = 148
+  end
+  object CDSPedido: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DSPPedido'
+    Left = 240
+    Top = 148
+    object CDSPedidonumero_pedido: TIntegerField
+      FieldName = 'numero_pedido'
+      Required = True
+    end
+    object CDSPedidodata_emissao: TSQLTimeStampField
+      FieldName = 'data_emissao'
+      Required = True
+      DisplayFormat = 'dd/mm/yyyy'
+    end
+    object CDSPedidocodigo_cliente: TIntegerField
+      FieldName = 'codigo_cliente'
+      Required = True
+    end
+    object CDSPedidovalor_total: TSingleField
+      FieldName = 'valor_total'
+      currency = True
+    end
+    object CDSPedidoCliente: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Cliente'
+      LookupDataSet = CdsCliente
+      LookupKeyFields = 'codigo'
+      LookupResultField = 'nome'
+      KeyFields = 'codigo_cliente'
+      Size = 150
+      Lookup = True
+    end
+  end
+  object DSPedido: TDataSource
+    DataSet = CDSPedido
+    Left = 336
+    Top = 148
+  end
+  object TblPedidoProdutos: TSQLDataSet
+    SchemaName = 'root'
+    CommandText = 'select * from `pedido_produtos`'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = Conexao
+    Left = 36
+    Top = 196
+    object TblPedidoProdutosautoincrem: TIntegerField
+      FieldName = 'autoincrem'
+      Required = True
+    end
+    object TblPedidoProdutosnumero_pedido: TIntegerField
+      FieldName = 'numero_pedido'
+      Required = True
+    end
+    object TblPedidoProdutoscodigo_produto: TIntegerField
+      FieldName = 'codigo_produto'
+      Required = True
+    end
+    object TblPedidoProdutosquantidade: TIntegerField
+      FieldName = 'quantidade'
+      Required = True
+    end
+    object TblPedidoProdutosvalor_unit: TSingleField
+      FieldName = 'valor_unit'
+      Required = True
+    end
+    object TblPedidoProdutosvalor_total: TSingleField
+      FieldName = 'valor_total'
+      Required = True
+    end
+  end
+  object DSPPedidoProduto: TDataSetProvider
+    DataSet = TblPedidoProdutos
+    Left = 140
+    Top = 196
+  end
+  object CDSPedidoProduto: TClientDataSet
+    Aggregates = <>
+    IndexFieldNames = 'numero_pedido'
+    MasterFields = 'numero_pedido'
+    MasterSource = DSPedido
+    PacketRecords = 0
+    Params = <>
+    ProviderName = 'DSPPedidoProduto'
+    Left = 240
+    Top = 196
+    object CDSPedidoProdutoautoincrem: TIntegerField
+      FieldName = 'autoincrem'
+      Required = True
+    end
+    object CDSPedidoProdutonumero_pedido: TIntegerField
+      FieldName = 'numero_pedido'
+      Required = True
+    end
+    object CDSPedidoProdutocodigo_produto: TIntegerField
+      FieldName = 'codigo_produto'
+      Required = True
+    end
+    object CDSPedidoProdutoquantidade: TIntegerField
+      FieldName = 'quantidade'
+      Required = True
+    end
+    object CDSPedidoProdutovalor_unit: TSingleField
+      FieldName = 'valor_unit'
+      Required = True
+      currency = True
+    end
+    object CDSPedidoProdutovalor_total: TSingleField
+      FieldName = 'valor_total'
+      Required = True
+      currency = True
+    end
+    object CDSPedidoProdutoProduto: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Produto'
+      LookupDataSet = CdsProduto
+      LookupKeyFields = 'codigo'
+      LookupResultField = 'Descricao'
+      KeyFields = 'codigo_produto'
+      Size = 150
+      Lookup = True
+    end
+  end
+  object DSPedidoProduto: TDataSource
+    DataSet = CDSPedidoProduto
+    Left = 336
+    Top = 196
+  end
+  object QryNumeroPedido: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select if (isnull(max(numero_pedido)+1),1,(max(numero_pedido)+1)' +
+        ') Proximo from pedido;')
+    SQLConnection = Conexao
+    Left = 36
+    Top = 244
+    object QryNumeroPedidoProximo: TLargeintField
+      FieldName = 'Proximo'
+    end
+  end
+  object qryRetornaProduto: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftInteger
+        Name = 'pcodigo'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'Select * from produto'
+      'where codigo = :pcodigo')
+    SQLConnection = Conexao
+    Left = 140
+    Top = 244
+    object qryRetornaProdutocodigo: TIntegerField
+      FieldName = 'codigo'
+      Required = True
+    end
+    object qryRetornaProdutoDescricao: TStringField
+      FieldName = 'Descricao'
+      Required = True
+      Size = 150
+    end
+    object qryRetornaProdutopreco: TSingleField
+      FieldName = 'preco'
+      Required = True
+    end
+  end
+  object QryRetornaIncrem: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select if (isnull(max(Autoincrem)+1),1,(max(Autoincrem)+1)) Prox' +
+        'imo from pedido_produtos')
+    SQLConnection = Conexao
+    Left = 240
+    Top = 244
+    object QryRetornaIncremProximo: TLargeintField
+      FieldName = 'Proximo'
+    end
+  end
+end
