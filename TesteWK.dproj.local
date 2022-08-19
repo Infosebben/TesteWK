@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022/08/18 17:33:34.781.dproj,C:\Users\Rodrigo Sebben\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\Rodrigo Sebben\Documents\RAD Studio\Projects\TesteWK.dproj</Transaction>
+    <Transaction>2022/08/18 17:34:45.721.pas,C:\Users\Rodrigo Sebben\Documents\RAD Studio\Projects\Unit1.pas=F:\TesteWK\View\UPrincipal.pas</Transaction>
+    <Transaction>2022/08/18 17:34:45.721.dfm,C:\Users\Rodrigo Sebben\Documents\RAD Studio\Projects\Unit1.dfm=F:\TesteWK\View\UPrincipal.dfm</Transaction>
+    <Transaction>2022/08/18 17:35:08.595.dproj,C:\Users\Rodrigo Sebben\Documents\RAD Studio\Projects\TesteWK.dproj=F:\TesteWK\TesteWK.dproj</Transaction>
+    <Transaction>2022/08/18 17:36:38.885.pas,F:\TesteWK\Unit1.pas=F:\TesteWK\Conexao.pas</Transaction>
+    <Transaction>2022/08/18 17:37:00.775.pas,F:\TesteWK\Conexao.pas=F:\TesteWK\DAO\Conexao.pas</Transaction>
+    <Transaction>2022/08/18 19:03:54.080.pas,F:\TesteWK\Unit1.pas=F:\TesteWK\Model\UDMPrincipal.pas</Transaction>
+    <Transaction>2022/08/18 19:03:54.080.dfm,F:\TesteWK\Unit1.dfm=F:\TesteWK\Model\UDMPrincipal.dfm</Transaction>
+    <Transaction>2022/08/18 19:08:39.330.pas,F:\TesteWK\DAO\Conexao.pas=</Transaction>
+  </Transactions>
+</BorlandProject>
